@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd
+  namespace: argo
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/pencakj/k8s-training.git
+    targetRevision: HEAD
+    path: apps
+  destination:
+    name: in-cluster
+    namespace: argo
+  syncPolicy:
+    syncOptions:
+    - Validate=true
+    - CreateNamespace=true
